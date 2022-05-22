@@ -8,13 +8,10 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Make gradlew executable
-        working-directory: ./SofaNBA
         run: chmod +x ./gradlew
 
       - name: Build the app
-        working-directory: ./SofaNBA
         run: ./gradlew build
 
       - name: Run kotlin lint
-        working-directory: ./SofaNBA
         run: ./gradlew lint
