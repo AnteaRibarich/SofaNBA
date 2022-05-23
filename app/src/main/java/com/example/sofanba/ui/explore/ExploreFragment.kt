@@ -1,4 +1,4 @@
-package com.example.sofanba.ui.notifications
+package com.example.sofanba.ui.explore
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.sofanba.databinding.FragmentNotificationsBinding
+import com.example.sofanba.R
+import com.example.sofanba.databinding.FragmentExploreBinding
 
-class NotificationsFragment : Fragment() {
+class ExploreFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private var _binding: FragmentExploreBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,16 +23,19 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        val exploreViewModel =
+            ViewModelProvider(this).get(ExploreViewModel::class.java)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentExploreBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textExplore
+        exploreViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
+        binding.toolbar.textToolbarTitle.text = getString(R.string.title_explore)
+
         return root
     }
 

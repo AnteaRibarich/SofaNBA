@@ -4,10 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.notifications.NotificationsFragment">
+    android:background="?attr/colorSurface0"
+    tools:context=".ui.explore.ExploreFragment">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/basic_toolbar_layout" />
 
     <TextView
-        android:id="@+id/text_notifications"
+        android:id="@+id/text_explore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
