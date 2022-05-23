@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorPrimaryDefault" format="color" />
+    <attr name="colorPrimaryDark" format="color" />
+    <attr name="colorPrimaryLight" format="color" />
+    <attr name="colorPrimaryHighlight" format="color" />
+    <attr name="colorSecondaryDefault" format="color" />
+    <attr name="colorSecondaryDark" format="color" />
+    <attr name="colorSecondaryLight" format="color" />
+    <attr name="colorSecondaryHighlight" format="color" />
+    <attr name="colorOn" format="color" />
+    <attr name="colorSurface0" format="color" />
+    <attr name="colorSurface1" format="color" />
+    <attr name="colorSurface2" format="color" />
+    <attr name="colorNLv1" format="color" />
+    <attr name="colorNLv2" format="color" />
+    <attr name="colorNLv3" format="color" />
+    <attr name="colorSuccess" format="color" />
+    <attr name="colorError" format="color" />
+    <attr name="colorElevation1" format="color" />
+    <attr name="colorElevation2" format="color" />
+    <attr name="colorOverlay" format="color" />
+</resources>

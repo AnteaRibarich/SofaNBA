@@ -1,16 +1,31 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.SofaNBA" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <!-- colors -->
+        <item name="colorPrimaryDefault">@color/color_primary</item>
+        <item name="colorPrimary">@color/status_error</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorPrimaryLight">@color/color_primary_light</item>
+        <item name="colorPrimaryHighlight">@color/color_primary_hightlight</item>
+        <item name="colorSecondaryDefault">@color/color_secondary</item>
+        <item name="colorSecondaryDark">@color/color_secondary_dark</item>
+        <item name="colorSecondaryLight">@color/color_secondary_light</item>
+        <item name="colorSecondaryHighlight">@color/color_secondary_highlight</item>
+        <item name="colorOn">@color/on_color_on_color_primary</item>
+        <item name="colorSurface0">@color/surface_surface_0</item>
+        <item name="colorSurface1">@color/surface_surface_1</item>
+        <item name="colorSurface2">@color/surface_surface_2</item>
+        <item name="colorNLv1">@color/neutrals_n_lv_1</item>
+        <item name="colorNLv2">@color/neutrals_n_lv_2</item>
+        <item name="colorNLv3">@color/neutrals_n_lv_3</item>
+        <item name="colorSuccess">@color/status_success</item>
+        <item name="colorError">@color/status_error</item>
+        <item name="colorElevation1">@color/elevation_elevation_1</item>
+        <item name="colorElevation2">@color/elevation_elevation_2</item>
+        <item name="colorOverlay">@color/overlay_overlay</item>
+
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryDefault</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>
