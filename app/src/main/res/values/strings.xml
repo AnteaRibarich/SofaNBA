@@ -4,4 +4,12 @@
     <string name="title_favorites">Favorites</string>
     <string name="title_seasons">Seasons</string>
     <string name="title_settings">Settings</string>
+    <string name="all_players">All players</string>
+    <string name="all_teams">All teams</string>
+
+    <string-array name="explore_options">
+        <item>Players</item>
+        <item>Teams</item>
+    </string-array>
+
 </resources>
