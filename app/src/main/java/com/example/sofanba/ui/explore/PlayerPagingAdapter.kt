@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.recyclerview.widget.DiffUtil
-import com.example.sofanba.model.Player
 import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.sofanba.R
 import com.example.sofanba.databinding.PlayerListTileBinding
 import com.example.sofanba.databinding.TextViewSubtitleBinding
+import com.example.sofanba.model.Player
 import com.example.sofanba.model.Team
 import com.example.sofanba.model.TeamHelper
 import com.example.sofanba.model.getFullName

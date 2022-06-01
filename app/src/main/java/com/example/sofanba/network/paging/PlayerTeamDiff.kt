@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.example.sofanba.model.Player
 import com.example.sofanba.model.Team
 
-object PlayerTeamDiff: DiffUtil.ItemCallback<Any>() {
+object PlayerTeamDiff : DiffUtil.ItemCallback<Any>() {
     override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean {
         return if (oldItem is Player && newItem is Player) {
             oldItem.id == newItem.id

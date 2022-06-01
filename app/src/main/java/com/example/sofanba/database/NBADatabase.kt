@@ -8,7 +8,7 @@ import com.example.sofanba.model.Player
 import com.example.sofanba.model.Team
 
 @Database(entities = [Player::class, Team::class], version = 1, exportSchema = false)
-abstract class NBADatabase: RoomDatabase() {
+abstract class NBADatabase : RoomDatabase() {
     abstract fun favouritePlayerDao(): FavouritePlayerDao
     abstract fun favouriteTeamDao(): FavouriteTeamDao
 

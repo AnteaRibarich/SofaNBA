@@ -5,7 +5,7 @@ import androidx.paging.PagingState
 import com.example.sofanba.model.Player
 import com.example.sofanba.network.BallDontLieService
 
-class PlayerPagingSource(private val service: BallDontLieService): PagingSource<Int, Player>() {
+class PlayerPagingSource(private val service: BallDontLieService) : PagingSource<Int, Player>() {
     override fun getRefreshKey(state: PagingState<Int, Player>): Int? {
         return state.anchorPosition?.let {
             val anchorPage = state.closestPageToPosition(it)
@@ -23,8 +23,7 @@ class PlayerPagingSource(private val service: BallDontLieService): PagingSource<
                     prevKey = null,
                     nextKey = response.meta.next_page
                 )
-            }
-            else {
+            } else {
                 LoadResult.Page(
                     data = emptyList(),
                     prevKey = null,
