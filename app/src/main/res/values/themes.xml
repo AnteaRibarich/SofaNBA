@@ -23,6 +23,7 @@
         <item name="colorElevation1">@color/elevation_elevation_1</item>
         <item name="colorElevation2">@color/elevation_elevation_2</item>
         <item name="colorOverlay">@color/overlay_overlay</item>
+        <item name="colorControlNormal">@color/neutrals_n_lv_1</item>
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">#0c000000</item>
@@ -32,6 +33,15 @@
 
     <style name="BottomNavigationViewStyle">
         <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="MaterialAlertDialog_rounded" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="shapeAppearanceOverlay">@style/DialogCorners</item>
+    </style>
+
+    <style name="DialogCorners">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
     </style>
 
 </resources>

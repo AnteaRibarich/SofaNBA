@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SofaNBA">
         <activity
+            android:name=".AboutActivity"
+            android:exported="false"
+            android:parentActivityName=".AboutActivity"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name">

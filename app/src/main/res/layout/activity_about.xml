@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/surface_surface_1"
+    android:fitsSystemWindows="true"
+    tools:context=".AboutActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/surface_surface_1"
+            app:collapsedTitleTextAppearance="@style/HeadlineMediumNLv1Left"
+            app:expandedTitleGravity="bottom"
+            app:expandedTitleMarginStart="16dp"
+            app:expandedTitleMarginTop="8dp"
+            app:expandedTitleTextAppearance="@style/HeadlineLargeNLv1Left"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title="@string/about"
+            app:toolbarId="@+id/collapsing_toolbar_layout">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/custom_tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/surface_surface_1"
+                app:layout_collapseMode="pin" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".AboutActivity"
+        tools:showIn="@layout/activity_about">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/HeadlineMediumNLv1Left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sofascore_academy" />
+
+            <TextView
+                style="@style/BodyLargeNLv1Left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/class_2022" />
+
+            <include
+                layout="@layout/sofa_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" />
+
+            <include
+                android:id="@+id/app_name"
+                layout="@layout/short_data_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:layout_marginTop="24dp" />
+
+            <include
+                android:id="@+id/credit"
+                layout="@layout/short_data_layout" />
+
+            <include
+                android:id="@+id/developer"
+                layout="@layout/short_data_layout" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -22,6 +22,7 @@
         <item name="colorElevation1">@color/overlay_overlay</item>
         <item name="colorElevation2">@color/color_elevation_2_night</item>
         <item name="colorOverlay">@color/overlay_overlay</item>
+        <item name="colorControlNormal">@color/neutrals_n_lv_1</item>
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">#0c000000</item>

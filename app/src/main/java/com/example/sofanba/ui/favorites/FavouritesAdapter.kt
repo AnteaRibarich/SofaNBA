@@ -8,6 +8,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sofanba.R
 import com.example.sofanba.model.DataWrapperHelper
+import com.example.sofanba.model.NBAhelper
 import com.example.sofanba.model.Player
 import com.example.sofanba.model.Team
 import com.example.sofanba.model.TeamHelper
@@ -98,10 +99,10 @@ class FavouritesAdapter(
 
                     // change appereance according to editing flag
                     if (editing) {
-                        playerHolder.binding.layoutInner.layoutParams.width = dpsToPixels(288)
+                        playerHolder.binding.layoutInner.layoutParams.width = NBAhelper.dpsToPixels(288, context)
                         playerHolder.binding.imageReorder.visibility = View.VISIBLE
                     } else {
-                        playerHolder.binding.layoutInner.layoutParams.width = dpsToPixels(344)
+                        playerHolder.binding.layoutInner.layoutParams.width = NBAhelper.dpsToPixels(344, context)
                     }
                 }
             }
@@ -139,19 +140,14 @@ class FavouritesAdapter(
 
                     // change appereance according to editing flag
                     if (editing) {
-                        teamHolder.binding.layoutInner.layoutParams.width = dpsToPixels(288)
+                        teamHolder.binding.layoutInner.layoutParams.width = NBAhelper.dpsToPixels(288, context)
                         teamHolder.binding.imageReorder.visibility = View.VISIBLE
                     } else {
-                        teamHolder.binding.layoutInner.layoutParams.width = dpsToPixels(344)
+                        teamHolder.binding.layoutInner.layoutParams.width = NBAhelper.dpsToPixels(344, context)
                     }
                 }
             }
         }
-    }
-
-    private fun dpsToPixels(dps: Int): Int {
-        val scale: Float = context.resources.displayMetrics.density
-        return (dps * scale + 0.5f).toInt()
     }
 
     override fun getItemCount(): Int {

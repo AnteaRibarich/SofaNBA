@@ -18,7 +18,7 @@ interface FavouritePlayerDao {
     suspend fun getAllFavouritePlayers(): List<Player>
 
     @Query("DELETE FROM FavouritePlayer")
-    suspend fun deleteMyCities()
+    suspend fun deleteAllFavouritePlayers()
 
     @Query("UPDATE FavouritePlayer SET orderNum_player = :order WHERE player_id = :id")
     suspend fun updateOrder(id: Int, order: Int)

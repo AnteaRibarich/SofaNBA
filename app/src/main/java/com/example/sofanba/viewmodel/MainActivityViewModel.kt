@@ -48,6 +48,13 @@ class MainActivityViewModel : ViewModel() {
         }
     }
 
+    fun deleteAllFavouritePlayers(context: Context) {
+        viewModelScope.launch {
+            NBADatabase.getDatabase(context)?.favouritePlayerDao()?.deleteAllFavouritePlayers()
+            getAllFavouritePlayers(context)
+        }
+    }
+
     fun getAllFavouriteTeams(context: Context) {
         viewModelScope.launch {
             val startList =
@@ -67,6 +74,13 @@ class MainActivityViewModel : ViewModel() {
     fun deleteFavouriteTeam(context: Context, id: Int) {
         viewModelScope.launch {
             NBADatabase.getDatabase(context)?.favouriteTeamDao()?.deleteFavouriteTeam(id)
+            getAllFavouriteTeams(context)
+        }
+    }
+
+    fun deleteAllFavouriteTeams(context: Context) {
+        viewModelScope.launch {
+            NBADatabase.getDatabase(context)?.favouriteTeamDao()?.deleteAllFavouriteTeams()
             getAllFavouriteTeams(context)
         }
     }
