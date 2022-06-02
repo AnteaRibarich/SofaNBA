@@ -23,7 +23,6 @@ import com.example.sofanba.viewmodel.MainActivityViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.snackbar.Snackbar.SnackbarLayout
 
-
 class SettingsFragment : Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
@@ -81,7 +80,6 @@ class SettingsFragment : Fragment() {
                     snackBar.setBackgroundTint(Color.TRANSPARENT)
                 }
                 snackBar.show()
-
             }
 
             builder.setView(bindingDialog.root)
