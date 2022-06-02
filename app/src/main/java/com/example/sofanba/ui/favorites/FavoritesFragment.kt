@@ -34,7 +34,15 @@ class FavoritesFragment : Fragment() {
 
         // setup adapter
         binding.recylyerViewFavourites.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = context?.let { FavouritesAdapter(it, listOf(), listOf(), false, DataWrapperHelper(it, viewModel)) }
+        val adapter = context?.let {
+            FavouritesAdapter(
+                it,
+                listOf(),
+                listOf(),
+                false,
+                DataWrapperHelper(it, viewModel)
+            )
+        }
         binding.recylyerViewFavourites.adapter = adapter
 
         // setup editing
@@ -45,15 +53,13 @@ class FavoritesFragment : Fragment() {
 
         // observe list of favourite teams and players
         viewModel.allFavouritePlayersData.observe(viewLifecycleOwner) {
-            if (viewModel.allFavouritePlayersData.value != null && adapter != null)
-            {
+            if (viewModel.allFavouritePlayersData.value != null && adapter != null) {
                 adapter.setFavouritePlayers(viewModel.allFavouritePlayersData.value as List<Player>)
             }
         }
 
         viewModel.allFavouriteTeamsData.observe(viewLifecycleOwner) {
-            if (viewModel.allFavouriteTeamsData.value != null && adapter != null)
-            {
+            if (viewModel.allFavouriteTeamsData.value != null && adapter != null) {
                 adapter.setFavouriteTeams(viewModel.allFavouriteTeamsData.value as List<Team>)
             }
         }

@@ -41,8 +41,12 @@ class ExploreFragment : Fragment() {
 
         // setting up recycler view
         binding.recylyerViewExplore.layoutManager = LinearLayoutManager(requireContext())
-        val pagingAdapter = context?.let { PlayerPagingAdapter(requireContext(), PlayerTeamDiff,
-            true, DataWrapperHelper(it, viewModel), listOf())}
+        val pagingAdapter = context?.let {
+            PlayerPagingAdapter(
+                requireContext(), PlayerTeamDiff,
+                true, DataWrapperHelper(it, viewModel), listOf()
+            )
+        }
         binding.recylyerViewExplore.adapter = pagingAdapter
 
         // setting up spinner
@@ -100,15 +104,13 @@ class ExploreFragment : Fragment() {
 
         // observe list of favourite teams and players
         viewModel.allFavouritePlayersData.observe(viewLifecycleOwner) {
-            if (pagingAdapter?.isPlayer == true && viewModel.allFavouritePlayersData.value != null)
-            {
+            if (pagingAdapter?.isPlayer == true && viewModel.allFavouritePlayersData.value != null) {
                 pagingAdapter.setFavourites(viewModel.allFavouritePlayersData.value as List<Any>)
             }
         }
 
         viewModel.allFavouriteTeamsData.observe(viewLifecycleOwner) {
-            if (pagingAdapter?.isPlayer == false && viewModel.allFavouriteTeamsData.value != null)
-            {
+            if (pagingAdapter?.isPlayer == false && viewModel.allFavouriteTeamsData.value != null) {
                 pagingAdapter.setFavourites(viewModel.allFavouriteTeamsData.value as List<Any>)
             }
         }

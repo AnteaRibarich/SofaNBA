@@ -11,7 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sofanba.R
 import com.example.sofanba.databinding.PlayerListTileBinding
 import com.example.sofanba.databinding.TextViewSubtitleBinding
-import com.example.sofanba.model.*
+import com.example.sofanba.model.DataWrapperHelper
+import com.example.sofanba.model.Player
+import com.example.sofanba.model.Team
+import com.example.sofanba.model.TeamHelper
+import com.example.sofanba.model.getFullName
 
 const val STRING_TYPE = 1
 const val PLAYER_TYPE = 2
