@@ -8,14 +8,10 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.example.sofanba.R
 import com.example.sofanba.databinding.PlayerListTileBinding
 import com.example.sofanba.databinding.TextViewSubtitleBinding
-import com.example.sofanba.model.Player
-import com.example.sofanba.model.Team
-import com.example.sofanba.model.TeamHelper
-import com.example.sofanba.model.getFullName
+import com.example.sofanba.model.*
 
 const val STRING_TYPE = 1
 const val PLAYER_TYPE = 2
@@ -24,11 +20,18 @@ const val TEAM_TYPE = 3
 class PlayerPagingAdapter(
     private val context: Context,
     differCallback: DiffUtil.ItemCallback<Any>,
-    var isPlayer: Boolean
+    var isPlayer: Boolean,
+    private val dataWrapper: DataWrapperHelper,
+    private var favourites: List<Any>
 ) : PagingDataAdapter<Any, RecyclerView.ViewHolder>(differCallback) {
 
     fun setIsPlayer(isPlayer: Boolean) {
         this.isPlayer = isPlayer
+    }
+
+    fun setFavourites(favourites: List<Any>) {
+        this.favourites = favourites
+        notifyDataSetChanged()
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -58,33 +61,51 @@ class PlayerPagingAdapter(
             PLAYER_TYPE -> {
                 // fill player data
                 val playerHolder = holder as PlayerViewHolder
-                val player = getItem(position) as Player
-                playerHolder.binding.textPlayerName.text = player.getFullName()
-                playerHolder.binding.textTeam.text = player.team.abbreviation
-                playerHolder.binding.imagePlayer.load("")
-                playerHolder.binding.imageViewFavourite.setOnClickListener {
-                    it.isSelected = !it.isSelected
+                if (getItem(position) is Player) {
+                    val player = getItem(position) as Player
+                    playerHolder.binding.textPlayerName.text = player.getFullName()
+                    playerHolder.binding.textTeam.text = player.team.abbreviation
+                    playerHolder.binding.imageViewFavourite.isSelected = favourites.contains(player)
+                    playerHolder.binding.imageViewFavourite.setOnClickListener {
+                        it.isSelected = !it.isSelected
+                        if (it.isSelected) {
+                            dataWrapper.insertFavouritePlayer(player)
+                        } else {
+                            dataWrapper.deleteFavouritePlayer(player)
+                        }
+                    }
                 }
             }
             TEAM_TYPE -> {
                 // fill team data
                 val teamHolder = holder as PlayerViewHolder
-                val team = getItem(position) as Team
-                val teamHelper = TeamHelper.values().firstOrNull { it.name == team.abbreviation }
-                teamHolder.binding.textPlayerName.text = team.full_name
-                teamHolder.binding.textTeam.visibility = View.GONE
-                if (teamHelper != null) {
-                    teamHolder.binding.imageTeam.setImageDrawable(
-                        AppCompatResources.getDrawable(
-                            context,
-                            teamHelper.src
+                println(getItem(position))
+                if (getItem(position) is Team) {
+                    val team = getItem(position) as Team
+                    val teamHelper =
+                        TeamHelper.values().firstOrNull { it.name == team.abbreviation }
+                    teamHolder.binding.textPlayerName.text = team.full_name
+                    teamHolder.binding.textTeam.visibility = View.GONE
+                    teamHolder.binding.imageViewFavourite.isSelected = favourites.contains(team)
+                    teamHolder.binding.imagePlayer.setImageIcon(null)
+                    if (teamHelper != null) {
+                        teamHolder.binding.imageTeam.setImageDrawable(
+                            AppCompatResources.getDrawable(
+                                context,
+                                teamHelper.src
+                            )
                         )
-                    )
-                    teamHolder.binding.imagePlayer.backgroundTintList =
-                        context.getColorStateList(teamHelper.color)
-                }
-                teamHolder.binding.imageViewFavourite.setOnClickListener {
-                    it.isSelected = !it.isSelected
+                        teamHolder.binding.imagePlayer.backgroundTintList =
+                            context.getColorStateList(teamHelper.color)
+                    }
+                    teamHolder.binding.imageViewFavourite.setOnClickListener {
+                        it.isSelected = !it.isSelected
+                        if (it.isSelected) {
+                            dataWrapper.insertFavouriteTeam(team)
+                        } else {
+                            dataWrapper.deleteFavouriteTeam(team)
+                        }
+                    }
                 }
             }
         }

@@ -15,6 +15,7 @@ import androidx.paging.map
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sofanba.R
 import com.example.sofanba.databinding.FragmentExploreBinding
+import com.example.sofanba.model.DataWrapperHelper
 import com.example.sofanba.network.paging.PlayerTeamDiff
 import com.example.sofanba.viewmodel.MainActivityViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -40,7 +41,8 @@ class ExploreFragment : Fragment() {
 
         // setting up recycler view
         binding.recylyerViewExplore.layoutManager = LinearLayoutManager(requireContext())
-        val pagingAdapter = PlayerPagingAdapter(requireContext(), PlayerTeamDiff, true)
+        val pagingAdapter = context?.let { PlayerPagingAdapter(requireContext(), PlayerTeamDiff,
+            true, DataWrapperHelper(it, viewModel), listOf())}
         binding.recylyerViewExplore.adapter = pagingAdapter
 
         // setting up spinner
@@ -58,11 +60,13 @@ class ExploreFragment : Fragment() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 when (spinner.selectedItemId) {
                     1L -> {
-                        pagingAdapter.setIsPlayer(false)
-                        pagingAdapter.refresh()
+                        pagingAdapter?.setIsPlayer(false)
+                        context?.let { viewModel.getAllFavouriteTeams(it) }
+                        pagingAdapter?.refresh()
                         lifecycleScope.launch {
                             viewModel.flowTeams.collectLatest {
-                                pagingAdapter.submitData(
+
+                                pagingAdapter?.submitData(
                                     it.map { x -> x as Any }
                                         .insertHeaderItem(
                                             TerminalSeparatorType.SOURCE_COMPLETE,
@@ -73,11 +77,12 @@ class ExploreFragment : Fragment() {
                         }
                     }
                     else -> {
-                        pagingAdapter.setIsPlayer(true)
-                        pagingAdapter.refresh()
+                        pagingAdapter?.setIsPlayer(true)
+                        context?.let { viewModel.getAllFavouritePlayers(it) }
+                        pagingAdapter?.refresh()
                         lifecycleScope.launch {
                             viewModel.flowPlayers.collectLatest {
-                                pagingAdapter.submitData(
+                                pagingAdapter?.submitData(
                                     it.map { x -> x as Any }
                                         .insertHeaderItem(
                                             TerminalSeparatorType.SOURCE_COMPLETE,
@@ -93,7 +98,20 @@ class ExploreFragment : Fragment() {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
 
-        viewModel.allFavouritePlayersData.observe(viewLifecycleOwner) {}
+        // observe list of favourite teams and players
+        viewModel.allFavouritePlayersData.observe(viewLifecycleOwner) {
+            if (pagingAdapter?.isPlayer == true && viewModel.allFavouritePlayersData.value != null)
+            {
+                pagingAdapter.setFavourites(viewModel.allFavouritePlayersData.value as List<Any>)
+            }
+        }
+
+        viewModel.allFavouriteTeamsData.observe(viewLifecycleOwner) {
+            if (pagingAdapter?.isPlayer == false && viewModel.allFavouriteTeamsData.value != null)
+            {
+                pagingAdapter.setFavourites(viewModel.allFavouriteTeamsData.value as List<Any>)
+            }
+        }
 
         return root
     }

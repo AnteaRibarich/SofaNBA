@@ -11,15 +11,15 @@ interface FavouriteTeamDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavouriteTeam(team: Team)
 
-    @Query("DELETE FROM FavouriteTeam WHERE id = :id")
+    @Query("DELETE FROM FavouriteTeam WHERE team_id = :id")
     suspend fun deleteFavouriteTeam(id: Int)
 
-    @Query("SELECT * FROM FavouriteTeam ORDER BY orderdNum DESC")
+    @Query("SELECT * FROM FavouriteTeam ORDER BY orderNum_team DESC")
     suspend fun getAllFavouriteTeams(): List<Team>
 
-    @Query("DELETE FROM FavouriteTeams")
+    @Query("DELETE FROM FavouriteTeam")
     suspend fun deleteMyCities()
 
-    @Query("UPDATE FavouriteTeams SET orderdNum = :order WHERE id = :id")
+    @Query("UPDATE FavouriteTeam SET orderNum_team = :order WHERE team_id = :id")
     suspend fun updateOrder(id: Int, order: Int)
 }

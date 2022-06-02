@@ -1,5 +1,6 @@
 package com.example.sofanba.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -16,6 +17,7 @@ data class TeamResponse(
 
 @Entity(tableName = "FavouritePlayer")
 data class Player(
+    @ColumnInfo("player_id")
     @PrimaryKey
     val id: Int,
     val first_name: String,
@@ -24,13 +26,14 @@ data class Player(
     val height_feet: Int?,
     val height_inches: Int?,
     val weight_pounds: Int?,
+    val orderNum_player: Int = 0,
     @Embedded
-    val team: Team,
-    val orderNum: Int?
+    val team: Team
 )
 
 @Entity(tableName = "FavouriteTeam")
 data class Team(
+    @ColumnInfo("team_id")
     @PrimaryKey
     val id: Int,
     val abbreviation: String,
@@ -38,7 +41,8 @@ data class Team(
     val conference: String,
     val division: String,
     val full_name: String,
-    val name: String
+    val name: String,
+    val orderNum_team: Int = 0
 )
 
 data class Meta(

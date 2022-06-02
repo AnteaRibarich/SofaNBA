@@ -18,7 +18,6 @@ class TeamPagingSource(val service: BallDontLieService) : PagingSource<Int, Team
             val nextPageNumber = params.key ?: 0
             val response = service.getAllTeams(nextPageNumber, 20).body()
             if (response != null) {
-                println(response.data + nextPageNumber)
                 LoadResult.Page(
                     data = response.data,
                     prevKey = null,

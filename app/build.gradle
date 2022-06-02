@@ -37,6 +37,7 @@ android {
 
 allprojects {
     apply plugin: "org.jlleitschuh.gradle.ktlint"
+    apply plugin: 'kotlin-kapt'
 }
 
 dependencies {
@@ -56,6 +57,8 @@ dependencies {
     implementation 'androidx.room:room-ktx:2.5.0-alpha01'
     implementation 'io.coil-kt:coil:2.1.0'
     annotationProcessor 'androidx.room:room-compiler:2.5.0-alpha01'
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:2.4.2")
     implementation 'androidx.paging:paging-common-ktx:3.1.1'
     implementation 'androidx.paging:paging-runtime:3.1.1'
     testImplementation 'junit:junit:4.13.2'

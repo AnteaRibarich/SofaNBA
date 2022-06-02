@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:state_selected="true"
+        android:color="?attr/colorNLv1"
+        android:drawable="@drawable/ic_assets_exportable_icons_done" />
+    <item
+        android:color="?attr/colorNLv2"
+        android:drawable="@drawable/ic_assets_exportable_icons_edit" />
+</selector>

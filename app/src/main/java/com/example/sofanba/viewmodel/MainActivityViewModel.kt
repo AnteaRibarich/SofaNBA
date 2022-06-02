@@ -9,6 +9,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.example.sofanba.database.NBADatabase
 import com.example.sofanba.model.Player
+import com.example.sofanba.model.Team
 import com.example.sofanba.network.Network
 import com.example.sofanba.network.paging.PlayerPagingSource
 import com.example.sofanba.network.paging.TeamPagingSource
@@ -17,6 +18,12 @@ import kotlinx.coroutines.launch
 class MainActivityViewModel : ViewModel() {
 
     val allFavouritePlayersData = MutableLiveData<List<Player>>()
+    val allFavouriteTeamsData = MutableLiveData<List<Team>>()
+
+    init {
+        allFavouritePlayersData.value = listOf()
+        allFavouriteTeamsData.value = listOf()
+    }
 
     fun getAllFavouritePlayers(context: Context) {
         viewModelScope.launch {
@@ -38,6 +45,29 @@ class MainActivityViewModel : ViewModel() {
         viewModelScope.launch {
             NBADatabase.getDatabase(context)?.favouritePlayerDao()?.deleteFavouritePlayer(id)
             getAllFavouritePlayers(context)
+        }
+    }
+
+    fun getAllFavouriteTeams(context: Context) {
+        viewModelScope.launch {
+            val startList =
+                NBADatabase.getDatabase(context)?.favouriteTeamDao()?.getAllFavouriteTeams()
+                    ?: listOf()
+            allFavouriteTeamsData.value = startList
+        }
+    }
+
+    fun insertFavouriteTeam(context: Context, team: Team) {
+        viewModelScope.launch {
+            NBADatabase.getDatabase(context)?.favouriteTeamDao()?.insertFavouriteTeam(team)
+            getAllFavouriteTeams(context)
+        }
+    }
+
+    fun deleteFavouriteTeam(context: Context, id: Int) {
+        viewModelScope.launch {
+            NBADatabase.getDatabase(context)?.favouriteTeamDao()?.deleteFavouriteTeam(id)
+            getAllFavouriteTeams(context)
         }
     }
 

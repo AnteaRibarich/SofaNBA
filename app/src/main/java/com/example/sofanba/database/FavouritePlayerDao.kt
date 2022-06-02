@@ -11,15 +11,15 @@ interface FavouritePlayerDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavouritePlayer(player: Player)
 
-    @Query("DELETE FROM FavouritePlayer WHERE id = :id")
+    @Query("DELETE FROM FavouritePlayer WHERE player_id = :id")
     suspend fun deleteFavouritePlayer(id: Int)
 
-    @Query("SELECT * FROM FavouritePlayer ORDER BY orderdNum DESC")
+    @Query("SELECT * FROM FavouritePlayer ORDER BY orderNum_player DESC")
     suspend fun getAllFavouritePlayers(): List<Player>
 
     @Query("DELETE FROM FavouritePlayer")
     suspend fun deleteMyCities()
 
-    @Query("UPDATE FavouritePlayer SET orderdNum = :order WHERE id = :id")
+    @Query("UPDATE FavouritePlayer SET orderNum_player = :order WHERE player_id = :id")
     suspend fun updateOrder(id: Int, order: Int)
 }
