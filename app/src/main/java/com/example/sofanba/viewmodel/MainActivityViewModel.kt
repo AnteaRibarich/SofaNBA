@@ -11,6 +11,7 @@ import com.example.sofanba.database.NBADatabase
 import com.example.sofanba.model.Player
 import com.example.sofanba.model.Team
 import com.example.sofanba.network.Network
+import com.example.sofanba.network.paging.GamePagingSource
 import com.example.sofanba.network.paging.PlayerPagingSource
 import com.example.sofanba.network.paging.TeamPagingSource
 import kotlinx.coroutines.launch
@@ -91,5 +92,9 @@ class MainActivityViewModel : ViewModel() {
 
     val flowTeams = Pager(PagingConfig(pageSize = 20)) {
         TeamPagingSource(Network().getService())
+    }.flow.cachedIn(viewModelScope)
+
+    val flowGames = Pager(PagingConfig(pageSize = 20)) {
+        GamePagingSource(Network().getService())
     }.flow.cachedIn(viewModelScope)
 }

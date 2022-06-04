@@ -1,6 +1,7 @@
 package com.example.sofanba.ui.explore
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,9 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sofanba.PlayerActivity
 import com.example.sofanba.R
+import com.example.sofanba.TeamActivity
 import com.example.sofanba.databinding.PlayerListTileBinding
 import com.example.sofanba.databinding.TextViewSubtitleBinding
 import com.example.sofanba.model.DataWrapperHelper
@@ -20,6 +23,8 @@ import com.example.sofanba.model.getFullName
 const val STRING_TYPE = 1
 const val PLAYER_TYPE = 2
 const val TEAM_TYPE = 3
+const val EXTRA_TEAM = "extra_team"
+const val EXTRA_PLAYER = "extra_player"
 
 class PlayerPagingAdapter(
     private val context: Context,
@@ -78,12 +83,18 @@ class PlayerPagingAdapter(
                             dataWrapper.deleteFavouritePlayer(player)
                         }
                     }
+
+                    playerHolder.binding.root.setOnClickListener {
+                        val intent = Intent(context, PlayerActivity::class.java).apply {
+                            putExtra(EXTRA_PLAYER, player)
+                        }
+                        context.startActivity(intent)
+                    }
                 }
             }
             TEAM_TYPE -> {
                 // fill team data
                 val teamHolder = holder as PlayerViewHolder
-                println(getItem(position))
                 if (getItem(position) is Team) {
                     val team = getItem(position) as Team
                     val teamHelper =
@@ -109,6 +120,13 @@ class PlayerPagingAdapter(
                         } else {
                             dataWrapper.deleteFavouriteTeam(team)
                         }
+                    }
+
+                    teamHolder.binding.root.setOnClickListener {
+                        val intent = Intent(context, TeamActivity::class.java).apply {
+                            putExtra(EXTRA_TEAM, team)
+                        }
+                        context.startActivity(intent)
                     }
                 }
             }

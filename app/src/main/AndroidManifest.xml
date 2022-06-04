@@ -10,9 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SofaNBA">
         <activity
+            android:name=".PlayerActivity"
+            android:exported="false"
+            android:label="@string/title_activity_player"
+            android:theme="@style/Theme.SofaNBA.NoActionBar" />
+        <activity
+            android:name=".TeamActivity"
+            android:exported="false"
+            android:label="@string/title_activity_team"
+            android:theme="@style/Theme.SofaNBA.NoActionBar" />
+        <activity
             android:name=".AboutActivity"
             android:exported="false"
-            android:parentActivityName=".AboutActivity"/>
+            android:parentActivityName=".AboutActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

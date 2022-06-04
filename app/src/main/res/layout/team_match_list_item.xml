@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/text_month"
+        style="@style/HeadlineSmallNLv2Left"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:gravity="center_vertical"
+        android:text="October 2021"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_background"
+        android:layout_width="344dp"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/background_curved_16dp_radius"
+        android:elevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/text_month"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_day"
+        android:layout_width="70dp"
+        android:layout_height="16dp"
+        style="@style/DescriptionNLv2Left"
+        android:textColor="?attr/colorNLv2"
+        android:text="friday"
+        android:textAllCaps="true"
+        app:layout_constraintTop_toTopOf="@id/view_background"
+        android:elevation="4dp"
+        app:layout_constraintStart_toStartOf="@id/view_background"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/text_date"
+        android:layout_width="70dp"
+        android:layout_height="16dp"
+        style="@style/AssistiveNLv1Left"
+        android:textColor="?attr/colorNLv1"
+        android:text="01 jan"
+        android:textAllCaps="true"
+        app:layout_constraintTop_toBottomOf="@id/text_day"
+        android:elevation="4dp"
+        app:layout_constraintStart_toStartOf="@id/view_background"
+        android:layout_marginStart="16dp"/>
+
+    <View
+        android:id="@+id/vertical_line_1"
+        android:layout_width="1dp"
+        android:layout_height="32dp"
+        android:background="?attr/colorNLv3"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/text_date"
+        app:layout_constraintTop_toTopOf="@id/view_background"
+        android:elevation="4dp"
+        />
+
+    <TextView
+        android:id="@+id/text_vs_at"
+        android:layout_width="24dp"
+        android:layout_height="20dp"
+        style="@style/BodyMediumNLv1Center"
+        android:text="\@"
+        app:layout_constraintStart_toEndOf="@id/vertical_line_1"
+        app:layout_constraintTop_toTopOf="@id/view_background"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="8dp"
+        android:elevation="4dp"
+        android:textColor="?attr/colorNLv1" />
+
+    <ImageView
+        android:id="@+id/image_team_vs"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:elevation="4dp"
+        android:src="@drawable/assets_exportable_logos_club_logos_eastern_conference_charlotte_hornets_transparent"
+        app:layout_constraintStart_toEndOf="@id/text_vs_at"
+        app:layout_constraintTop_toTopOf="@id/view_background"
+        android:layout_margin="8dp"/>
+
+    <TextView
+        android:id="@+id/text_team_vs_name"
+        android:layout_width="32dp"
+        android:layout_height="20dp"
+        style="@style/BodyMediumNLv1Center"
+        android:text="NYK"
+        app:layout_constraintStart_toEndOf="@id/image_team_vs"
+        app:layout_constraintTop_toTopOf="@id/view_background"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="8dp"
+        android:textAllCaps="true"
+        android:elevation="4dp"
+        android:textColor="?attr/colorNLv1" />
+
+    <View
+        android:id="@+id/vertical_line_2"
+        android:layout_width="1dp"
+        android:layout_height="32dp"
+        android:background="?attr/colorNLv3"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/text_team_vs_name"
+        app:layout_constraintTop_toTopOf="@id/view_background"
+        android:elevation="4dp" />
+
+    <TextView
+        android:id="@+id/text_win_lose"
+        android:layout_width="16dp"
+        android:layout_height="20dp"
+        style="@style/BodyMediumNLv1Center"
+        android:text="L"
+        app:layout_constraintStart_toEndOf="@id/vertical_line_2"
+        app:layout_constraintTop_toTopOf="@id/view_background"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="8dp"
+        android:textAllCaps="true"
+        android:elevation="4dp"
+        android:textColor="?attr/colorError" />
+
+    <TextView
+        android:id="@+id/text_result_left"
+        android:layout_width="32dp"
+        android:layout_height="20dp"
+        style="@style/BodyMediumNLv1Center"
+        android:text="99"
+        app:layout_constraintStart_toEndOf="@id/text_win_lose"
+        app:layout_constraintTop_toTopOf="@id/view_background"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="8dp"
+        android:textAllCaps="true"
+        android:elevation="4dp"
+        android:textColor="?attr/colorNLv1" />
+
+    <TextView
+        android:id="@+id/text_result_minus"
+        android:layout_width="8dp"
+        android:layout_height="20dp"
+        style="@style/BodyMediumNLv1Center"
+        android:text="-"
+        app:layout_constraintStart_toEndOf="@id/text_result_left"
+        app:layout_constraintTop_toTopOf="@id/view_background"
+        android:layout_marginTop="18dp"
+        android:textAllCaps="true"
+        android:elevation="4dp"
+        android:textColor="?attr/colorNLv1" />
+
+    <TextView
+        android:id="@+id/text_result_right"
+        android:layout_width="32dp"
+        android:layout_height="20dp"
+        style="@style/BodyMediumNLv1Center"
+        android:text="200"
+        app:layout_constraintStart_toEndOf="@id/text_result_minus"
+        app:layout_constraintTop_toTopOf="@id/view_background"
+        android:layout_marginTop="18dp"
+        android:textAllCaps="true"
+        android:elevation="4dp"
+        android:textColor="?attr/colorNLv1" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.sofanba.network
 
+import com.example.sofanba.model.GameResponse
 import com.example.sofanba.model.PlayerResponse
 import com.example.sofanba.model.TeamResponse
 import retrofit2.Response
@@ -19,4 +20,17 @@ interface BallDontLieService {
         @Query("page") page: Int,
         @Query("per_page") per_page: Int
     ): Response<TeamResponse>
+
+    @GET("games")
+    suspend fun getAllGames(
+        @Query("page") page: Int,
+        @Query("per_page") per_page: Int
+    ): Response<GameResponse>
+
+    @GET("games")
+    suspend fun getAllGamesFromTeam(
+        @Query("page") page: Int,
+        @Query("per_page") per_page: Int,
+        @Query("team_ids[]") id: Int
+    ): Response<GameResponse>
 }

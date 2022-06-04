@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="82dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <View
+        android:id="@+id/view_background_team"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_curved_16dp_radius"
+        android:backgroundTint="@color/status_success"
+        android:elevation="4dp"
+        android:src="@drawable/ic_action_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_team"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:elevation="4dp"
+        android:src="@drawable/assets_exportable_logos_club_logos_eastern_conference_charlotte_hornets_transparent"
+        app:layout_constraintBottom_toBottomOf="@id/view_background_team"
+        app:layout_constraintEnd_toEndOf="@id/view_background_team"
+        app:layout_constraintStart_toStartOf="@id/view_background_team"
+        app:layout_constraintTop_toTopOf="@id/view_background_team" />
+
+    <TextView
+        android:id="@+id/text_team"
+        style="@style/AssistiveNLv1Center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:layout_marginTop="6dp"
+        android:text="BKN"
+        app:layout_constraintEnd_toEndOf="@id/view_background_team"
+        app:layout_constraintStart_toStartOf="@id/view_background_team"
+        app:layout_constraintTop_toBottomOf="@id/view_background_team" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

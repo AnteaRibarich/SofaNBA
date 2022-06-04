@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 data class PlayerResponse(
     val data: List<Player>,
@@ -29,7 +30,7 @@ data class Player(
     val orderNum_player: Int = 0,
     @Embedded
     val team: Team
-)
+) : Serializable
 
 @Entity(tableName = "FavouriteTeam")
 data class Team(
@@ -43,7 +44,7 @@ data class Team(
     val full_name: String,
     val name: String,
     val orderNum_team: Int = 0
-)
+) : Serializable
 
 data class Meta(
     val total_pages: Int,

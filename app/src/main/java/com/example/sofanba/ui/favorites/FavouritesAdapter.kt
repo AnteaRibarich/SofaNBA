@@ -1,22 +1,21 @@
 package com.example.sofanba.ui.favorites
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sofanba.R
+import com.example.sofanba.TeamActivity
 import com.example.sofanba.model.DataWrapperHelper
 import com.example.sofanba.model.NBAhelper
 import com.example.sofanba.model.Player
 import com.example.sofanba.model.Team
 import com.example.sofanba.model.TeamHelper
 import com.example.sofanba.model.getFullName
-import com.example.sofanba.ui.explore.PLAYER_TYPE
-import com.example.sofanba.ui.explore.PlayerPagingAdapter
-import com.example.sofanba.ui.explore.STRING_TYPE
-import com.example.sofanba.ui.explore.TEAM_TYPE
+import com.example.sofanba.ui.explore.*
 
 class FavouritesAdapter(
     private val context: Context,
@@ -100,7 +99,6 @@ class FavouritesAdapter(
                     // change appereance according to editing flag
                     if (editing) {
                         playerHolder.binding.layoutInner.layoutParams.width = NBAhelper.dpsToPixels(288, context)
-                        playerHolder.binding.imageReorder.visibility = View.VISIBLE
                     } else {
                         playerHolder.binding.layoutInner.layoutParams.width = NBAhelper.dpsToPixels(344, context)
                     }
@@ -141,9 +139,15 @@ class FavouritesAdapter(
                     // change appereance according to editing flag
                     if (editing) {
                         teamHolder.binding.layoutInner.layoutParams.width = NBAhelper.dpsToPixels(288, context)
-                        teamHolder.binding.imageReorder.visibility = View.VISIBLE
                     } else {
                         teamHolder.binding.layoutInner.layoutParams.width = NBAhelper.dpsToPixels(344, context)
+                    }
+
+                    teamHolder.binding.root.setOnClickListener {
+                        val intent = Intent(context, TeamActivity::class.java).apply {
+                            putExtra(EXTRA_TEAM, team)
+                        }
+                        context.startActivity(intent)
                     }
                 }
             }
