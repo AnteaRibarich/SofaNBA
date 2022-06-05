@@ -1,5 +1,6 @@
 package com.example.sofanba.model
 
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -22,7 +23,7 @@ data class Game(
     val time: String,
     val visitor_team: Team,
     val visitor_team_score: Int
-) {
+) : Serializable {
     fun getMonthYear(): String = SimpleDateFormat("MMMM yyyy", Locale.ENGLISH).format(parseDate())
 
     fun getDayDate(): String = SimpleDateFormat("EEEE, dd MMM yyyy", Locale.ENGLISH).format(parseDate())
@@ -33,4 +34,6 @@ data class Game(
     fun getDay(): String = SimpleDateFormat("EEEE", Locale.ENGLISH).format(parseDate())
 
     fun getDateNoYear(): String = SimpleDateFormat("dd MMM", Locale.ENGLISH).format(parseDate())
+
+    fun getTeamNames(): String = "${home_team.name} vs. ${visitor_team.name}"
 }

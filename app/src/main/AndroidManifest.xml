@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SofaNBA">
         <activity
+            android:name=".MatchInfoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_match_info"
+            android:theme="@style/Theme.SofaNBA.NoActionBar" />
+        <activity
             android:name=".PlayerActivity"
             android:exported="false"
             android:label="@string/title_activity_player"

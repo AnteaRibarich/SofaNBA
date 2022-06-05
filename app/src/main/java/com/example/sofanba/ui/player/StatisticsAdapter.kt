@@ -11,7 +11,6 @@ import com.example.sofanba.R
 import com.example.sofanba.databinding.PlayerStatsLayoutBinding
 import com.google.android.material.color.MaterialColors
 
-
 class StatisticsAdapter(
     private val context: Context,
     private var statistics: LinkedHashMap<String, MutableList<Any>>
@@ -64,5 +63,4 @@ class StatisticsAdapter(
         this.statistics = statistics
         notifyDataSetChanged()
     }
-
 }

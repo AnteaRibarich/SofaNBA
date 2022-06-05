@@ -40,4 +40,10 @@ interface BallDontLieService {
         @Query("season") season: Int,
         @Query("player_ids[]") playerId: Int
     ): Response<SeasonAverage>
+
+    @GET("stats")
+    suspend fun getStatsForGame(
+        @Query("season") season: Int,
+        @Query("games_ids[]") gameId: Int
+    ): Response<SeasonAverage>
 }

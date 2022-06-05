@@ -1,6 +1,7 @@
 package com.example.sofanba.ui.seasons
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +10,14 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sofanba.MatchInfoActivity
 import com.example.sofanba.R
 import com.example.sofanba.databinding.MatchTileBinding
 import com.example.sofanba.model.Game
 import com.example.sofanba.model.TeamHelper
 import com.google.android.material.color.MaterialColors
+
+const val EXTRA_GAME = "game"
 
 class GamePagingAdapter(
     private val context: Context,
@@ -105,6 +109,13 @@ class GamePagingAdapter(
                 if (game.getMonthYear() == previousGame?.getMonthYear()) {
                     holder.binding.textMonth.visibility = View.GONE
                 }
+            }
+
+            holder.binding.root.setOnClickListener {
+                val intent = Intent(context, MatchInfoActivity::class.java).apply {
+                    putExtra(EXTRA_GAME, game)
+                }
+                context.startActivity(intent)
             }
         }
     }

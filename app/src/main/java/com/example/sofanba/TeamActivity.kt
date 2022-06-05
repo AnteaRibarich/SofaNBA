@@ -32,6 +32,7 @@ class TeamActivity : AppCompatActivity() {
             binding.tabs.backgroundTintList = applicationContext.getColorStateList(teamHelper.color)
             binding.appBar.backgroundTintList = applicationContext.getColorStateList(teamHelper.color)
         }
+        binding.title.text = team.full_name
         binding.imageArrow.setOnClickListener {
             super.finish()
         }
