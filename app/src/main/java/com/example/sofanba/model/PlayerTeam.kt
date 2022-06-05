@@ -1,9 +1,11 @@
 package com.example.sofanba.model
 
+import android.content.Context
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.sofanba.R
 import java.io.Serializable
 
 data class PlayerResponse(
@@ -30,7 +32,31 @@ data class Player(
     val orderNum_player: Int = 0,
     @Embedded
     val team: Team
-) : Serializable
+) : Serializable {
+    fun getPlayerWeight(): String {
+        return if (weight_pounds == null) {
+            "..."
+        } else {
+            "${weight_pounds}lb"
+        }
+    }
+
+    fun getPlayerPosition(context: Context): String {
+        return when (position) {
+            "F" -> context.getString(R.string.forward)
+            "G" -> context.getString(R.string.guard)
+            else -> context.getString(R.string.center)
+        }
+    }
+
+    fun getPlayerHeight(): String {
+        return if (height_feet == null || height_inches == null) {
+            "..."
+        } else "$height_feet’$height_inches”"
+    }
+
+    fun getFullName(): String = "$first_name $last_name"
+}
 
 @Entity(tableName = "FavouriteTeam")
 data class Team(

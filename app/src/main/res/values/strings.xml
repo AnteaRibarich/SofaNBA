@@ -33,11 +33,15 @@
     <string name="details">Details</string>
     <string name="matches">Matches</string>
     <string name="title_activity_player">PlayerActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
     <string name="conference">Conference</string>
     <string name="division">Division</string>
     <string name="at">\@</string>
     <string name="vs">vs</string>
-
+    <string name="statistics">Statistics</string>
+    <string name="team">Team</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="forward">Forward</string>
+    <string name="guard">Guard</string>
+    <string name="center">Center</string>
 </resources>

@@ -9,16 +9,17 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.sofanba.PlayerActivity
 import com.example.sofanba.R
 import com.example.sofanba.TeamActivity
 import com.example.sofanba.databinding.PlayerListTileBinding
 import com.example.sofanba.databinding.TextViewSubtitleBinding
 import com.example.sofanba.model.DataWrapperHelper
+import com.example.sofanba.model.Image
 import com.example.sofanba.model.Player
 import com.example.sofanba.model.Team
 import com.example.sofanba.model.TeamHelper
-import com.example.sofanba.model.getFullName
 
 const val STRING_TYPE = 1
 const val PLAYER_TYPE = 2
@@ -31,7 +32,8 @@ class PlayerPagingAdapter(
     differCallback: DiffUtil.ItemCallback<Any>,
     var isPlayer: Boolean,
     private val dataWrapper: DataWrapperHelper,
-    private var favourites: List<Any>
+    private var favourites: List<Any>,
+    private var images: HashMap<Int, Any>
 ) : PagingDataAdapter<Any, RecyclerView.ViewHolder>(differCallback) {
 
     fun setIsPlayer(isPlayer: Boolean) {
@@ -40,6 +42,11 @@ class PlayerPagingAdapter(
 
     fun setFavourites(favourites: List<Any>) {
         this.favourites = favourites
+        notifyDataSetChanged()
+    }
+
+    fun setImages(images: HashMap<Int, Any>) {
+        this.images = images
         notifyDataSetChanged()
     }
 
@@ -89,6 +96,22 @@ class PlayerPagingAdapter(
                             putExtra(EXTRA_PLAYER, player)
                         }
                         context.startActivity(intent)
+                    }
+                    if (!images.containsKey(player.id) || images[player.id] is Int) {
+                        playerHolder.binding.imagePlayer.setImageDrawable(
+                            AppCompatResources.getDrawable(
+                                context,
+                                when (player.id % 3) {
+                                    0 -> R.drawable.ic_assets_exportable_graphics_player_1_big
+                                    1 -> R.drawable.ic_assets_exportable_graphics_player_2_big
+                                    else -> R.drawable.ic_assets_exportable_graphics_player_3_big
+                                }
+                            )
+                        )
+                    } else {
+                        println(images[player.id])
+                        val image = images[player.id] as List<Image>
+                        playerHolder.binding.imagePlayer.load(image[0].imageUrl)
                     }
                 }
             }

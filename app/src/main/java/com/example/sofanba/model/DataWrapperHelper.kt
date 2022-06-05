@@ -3,7 +3,10 @@ package com.example.sofanba.model
 import android.content.Context
 import com.example.sofanba.viewmodel.MainActivityViewModel
 
-class DataWrapperHelper(val context: Context, private val viewModel: MainActivityViewModel) {
+class DataWrapperHelper(
+    val context: Context,
+    private val viewModel: MainActivityViewModel
+) {
     fun insertFavouritePlayer(player: Player) {
         context.let { viewModel.insertFavouritePlayer(player = player, context = it) }
     }

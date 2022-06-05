@@ -39,16 +39,6 @@ class DetailsFragment(val team: Team) : Fragment() {
         val teamHelper =
             TeamHelper.values().firstOrNull { it.name == team.abbreviation }
 
-        viewModel.team.observe(viewLifecycleOwner) {
-            println(viewModel.team.value)
-        }
-
-        lifecycleScope.launch {
-            viewModel.flowTeams.collectLatest {
-                println(it)
-            }
-        }
-
         _binding = FragmentTeamBinding.inflate(inflater, container, false)
         val root = binding.root
         binding.textTeamAbbreviation.text = team.abbreviation

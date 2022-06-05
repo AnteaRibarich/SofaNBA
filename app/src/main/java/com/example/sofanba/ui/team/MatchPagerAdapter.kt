@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sofanba.R
 import com.example.sofanba.databinding.TeamMatchListItemBinding
 import com.example.sofanba.model.Game
-import com.example.sofanba.model.TeamHelper
 import com.example.sofanba.model.Team
+import com.example.sofanba.model.TeamHelper
 import com.google.android.material.color.MaterialColors
 
 class MatchPagerAdapter(

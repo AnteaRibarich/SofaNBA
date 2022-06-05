@@ -7,28 +7,42 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import com.example.sofanba.PlayerActivity
 import com.example.sofanba.R
 import com.example.sofanba.TeamActivity
 import com.example.sofanba.model.DataWrapperHelper
+import com.example.sofanba.model.Image
 import com.example.sofanba.model.NBAhelper
 import com.example.sofanba.model.Player
 import com.example.sofanba.model.Team
 import com.example.sofanba.model.TeamHelper
-import com.example.sofanba.model.getFullName
-import com.example.sofanba.ui.explore.*
+import com.example.sofanba.ui.explore.PlayerPagingAdapter
+
+const val STRING_TYPE = 1
+const val PLAYER_TYPE = 2
+const val TEAM_TYPE = 3
+const val EXTRA_TEAM = "extra_team"
+const val EXTRA_PLAYER = "extra_player"
 
 class FavouritesAdapter(
     private val context: Context,
     private var playerFavList: List<Player>,
     private var teamFavList: List<Team>,
     private var editing: Boolean,
-    private val dataWrapper: DataWrapperHelper
+    private val dataWrapper: DataWrapperHelper,
+    private var images: HashMap<Int, Any>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val adapterList = arrayListOf<Any>()
 
     init {
         updateList()
+    }
+
+    fun setImages(images: HashMap<Int, Any>) {
+        this.images = images
+        notifyDataSetChanged()
     }
 
     private fun updateList() {
@@ -98,9 +112,34 @@ class FavouritesAdapter(
 
                     // change appereance according to editing flag
                     if (editing) {
-                        playerHolder.binding.layoutInner.layoutParams.width = NBAhelper.dpsToPixels(288, context)
+                        playerHolder.binding.layoutInner.layoutParams.width =
+                            NBAhelper.dpsToPixels(288, context)
                     } else {
-                        playerHolder.binding.layoutInner.layoutParams.width = NBAhelper.dpsToPixels(344, context)
+                        playerHolder.binding.layoutInner.layoutParams.width =
+                            NBAhelper.dpsToPixels(344, context)
+                    }
+
+                    playerHolder.binding.root.setOnClickListener {
+                        val intent = Intent(context, PlayerActivity::class.java).apply {
+                            putExtra(EXTRA_PLAYER, player)
+                        }
+                        context.startActivity(intent)
+                    }
+
+                    if (images[player.id] is Int || !images.containsKey(player.id)) {
+                        playerHolder.binding.imagePlayer.setImageDrawable(
+                            AppCompatResources.getDrawable(
+                                context,
+                                when (player.id % 3) {
+                                    0 -> R.drawable.ic_assets_exportable_graphics_player_1_big
+                                    1 -> R.drawable.ic_assets_exportable_graphics_player_2_big
+                                    else -> R.drawable.ic_assets_exportable_graphics_player_3_big
+                                }
+                            )
+                        )
+                    } else {
+                        val image = images[player.id] as List<Image>
+                        playerHolder.binding.imagePlayer.load(image[0].imageUrl)
                     }
                 }
             }
@@ -138,9 +177,11 @@ class FavouritesAdapter(
 
                     // change appereance according to editing flag
                     if (editing) {
-                        teamHolder.binding.layoutInner.layoutParams.width = NBAhelper.dpsToPixels(288, context)
+                        teamHolder.binding.layoutInner.layoutParams.width =
+                            NBAhelper.dpsToPixels(288, context)
                     } else {
-                        teamHolder.binding.layoutInner.layoutParams.width = NBAhelper.dpsToPixels(344, context)
+                        teamHolder.binding.layoutInner.layoutParams.width =
+                            NBAhelper.dpsToPixels(344, context)
                     }
 
                     teamHolder.binding.root.setOnClickListener {

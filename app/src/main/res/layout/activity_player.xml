@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlayerActivity">
+    tools:context=".PlayerActivity"
+    android:fitsSystemWindows="false">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.SofaNBA.AppBarOverlay">
+        android:layout_height="128dp"
+        android:theme="@style/Theme.SofaNBA.AppBarOverlay"
+        android:backgroundTint="?attr/colorPrimaryDefault">
 
         <TextView
             android:id="@+id/title"
@@ -17,15 +19,45 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:minHeight="?actionBarSize"
-            android:padding="@dimen/appbar_padding"
-            android:text="@string/app_name"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="56dp"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:tabTextColor="@color/on_color_on_color_secondary"
+            app:tabSelectedTextColor="?attr/colorOnPrimary"
+            app:tabIndicatorColor="?attr/colorSecondaryLight"
+            app:tabIndicatorHeight="3dp"
+            app:tabRippleColor="?attr/colorElevation1"
+            android:backgroundTint="?attr/colorPrimaryDefault"/>
     </com.google.android.material.appbar.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/image_arrow"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_assets_exportable_icons_arrow_back"
+        app:tint="?attr/colorOnPrimary"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="16dp"
+        android:elevation="4dp"/>
+
+    <ImageView
+        android:id="@+id/image_view_favourite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/title_favorites"
+        android:src="@drawable/favourite_mark"
+        app:tint="?attr/colorOnPrimary"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="320dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:contextClickable="true"
+        android:elevation="4dp" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
@@ -33,12 +65,4 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

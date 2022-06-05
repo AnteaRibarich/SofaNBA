@@ -10,6 +10,9 @@ class Network {
     private val service: BallDontLieService
     private val baseUrl = "https://www.balldontlie.io/api/v1/"
 
+    private val serviceSofa: SofaService
+    private val baseUrlSofa = "https://academy-2022.dev.sofascore.com/api/v1/academy/"
+
     init {
         val interceptor = HttpLoggingInterceptor()
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -18,7 +21,12 @@ class Network {
             Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build()).build()
         service = retrofit.create(BallDontLieService::class.java)
+        val retrofitSofa =
+            Retrofit.Builder().baseUrl(baseUrlSofa).addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient.build()).build()
+        serviceSofa = retrofitSofa.create(SofaService::class.java)
     }
 
     fun getService(): BallDontLieService = service
+    fun getServiceSofa(): SofaService = serviceSofa
 }

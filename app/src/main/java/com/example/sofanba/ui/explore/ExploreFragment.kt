@@ -44,7 +44,7 @@ class ExploreFragment : Fragment() {
         val pagingAdapter = context?.let {
             PlayerPagingAdapter(
                 requireContext(), PlayerTeamDiff,
-                true, DataWrapperHelper(it, viewModel), listOf()
+                true, DataWrapperHelper(it, viewModel), listOf(), HashMap()
             )
         }
         binding.recylyerViewExplore.adapter = pagingAdapter
@@ -69,13 +69,13 @@ class ExploreFragment : Fragment() {
                         pagingAdapter?.refresh()
                         lifecycleScope.launch {
                             viewModel.flowTeams.collectLatest {
-
                                 pagingAdapter?.submitData(
-                                    it.map { x -> x as Any }
-                                        .insertHeaderItem(
-                                            TerminalSeparatorType.SOURCE_COMPLETE,
-                                            item = spinner.selectedItem
-                                        )
+                                    it.map { x ->
+                                        x as Any
+                                    }.insertHeaderItem(
+                                        TerminalSeparatorType.SOURCE_COMPLETE,
+                                        item = spinner.selectedItem
+                                    )
                                 )
                             }
                         }
@@ -87,11 +87,15 @@ class ExploreFragment : Fragment() {
                         lifecycleScope.launch {
                             viewModel.flowPlayers.collectLatest {
                                 pagingAdapter?.submitData(
-                                    it.map { x -> x as Any }
-                                        .insertHeaderItem(
-                                            TerminalSeparatorType.SOURCE_COMPLETE,
-                                            item = spinner.selectedItem
-                                        )
+                                    it.map { x ->
+                                        run {
+                                            viewModel.getPlayerImages(x.id)
+                                        }
+                                        x as Any
+                                    }.insertHeaderItem(
+                                        TerminalSeparatorType.SOURCE_COMPLETE,
+                                        item = spinner.selectedItem
+                                    )
                                 )
                             }
                         }
@@ -112,6 +116,15 @@ class ExploreFragment : Fragment() {
         viewModel.allFavouriteTeamsData.observe(viewLifecycleOwner) {
             if (pagingAdapter?.isPlayer == false && viewModel.allFavouriteTeamsData.value != null) {
                 pagingAdapter.setFavourites(viewModel.allFavouriteTeamsData.value as List<Any>)
+            }
+        }
+
+        viewModel.playerImages.observe(viewLifecycleOwner) {
+            if (pagingAdapter?.isPlayer == true) {
+                println("HAAAAAAAAAAAAAAAAAAAA")
+                viewModel.playerImages.value?.let { it1 -> pagingAdapter.setImages(it1) }
+            } else {
+                println("HAA")
             }
         }
 

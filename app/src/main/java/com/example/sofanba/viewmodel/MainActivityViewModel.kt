@@ -20,10 +20,12 @@ class MainActivityViewModel : ViewModel() {
 
     val allFavouritePlayersData = MutableLiveData<List<Player>>()
     val allFavouriteTeamsData = MutableLiveData<List<Team>>()
+    val playerImages = MutableLiveData<HashMap<Int, Any>>()
 
     init {
         allFavouritePlayersData.value = listOf()
         allFavouriteTeamsData.value = listOf()
+        playerImages.value = hashMapOf<Int, Any>()
     }
 
     fun getAllFavouritePlayers(context: Context) {
@@ -83,6 +85,18 @@ class MainActivityViewModel : ViewModel() {
         viewModelScope.launch {
             NBADatabase.getDatabase(context)?.favouriteTeamDao()?.deleteAllFavouriteTeams()
             getAllFavouriteTeams(context)
+        }
+    }
+
+    fun getPlayerImages(playerId: Int) {
+        viewModelScope.launch {
+            val response = Network().getServiceSofa().getAllPlayerImages(playerId)
+            if (response.isSuccessful) {
+                println(response)
+                response.body()?.let { playerImages.value?.set(playerId, it.data) }
+            } else {
+                playerImages.value?.set(playerId, playerId)
+            }
         }
     }
 

@@ -40,7 +40,8 @@ class FavoritesFragment : Fragment() {
                 listOf(),
                 listOf(),
                 false,
-                DataWrapperHelper(it, viewModel)
+                DataWrapperHelper(it, viewModel),
+                HashMap()
             )
         }
         binding.recylyerViewFavourites.adapter = adapter
@@ -66,6 +67,12 @@ class FavoritesFragment : Fragment() {
 
         context?.let { viewModel.getAllFavouriteTeams(it) }
         context?.let { viewModel.getAllFavouritePlayers(it) }
+
+        viewModel.playerImages.observe(viewLifecycleOwner) {
+            viewModel.playerImages.value?.let { it1 ->
+                adapter?.setImages(it1)
+            }
+        }
 
         binding.toolbar.textToolbarTitle.text = getString(R.string.title_favorites)
 
