@@ -52,7 +52,6 @@ class FavouritesAdapter(
         adapterList.add(context.getString(R.string.teams))
         adapterList.addAll(teamFavList)
         notifyDataSetChanged()
-        println(editing)
     }
 
     override fun getItemViewType(position: Int): Int {

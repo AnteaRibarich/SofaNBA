@@ -41,7 +41,7 @@ class FavoritesFragment : Fragment() {
                 listOf(),
                 false,
                 DataWrapperHelper(it, viewModel),
-                HashMap()
+                LinkedHashMap()
             )
         }
         binding.recylyerViewFavourites.adapter = adapter

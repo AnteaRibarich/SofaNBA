@@ -4,18 +4,12 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
 import com.example.sofanba.database.NBADatabase
-import com.example.sofanba.model.Game
+import com.example.sofanba.model.Average
 import com.example.sofanba.model.Player
+import com.example.sofanba.model.SeasonAverage
 import com.example.sofanba.model.Team
 import com.example.sofanba.network.Network
-import com.example.sofanba.network.paging.GameByTeamPagingSource
-import com.example.sofanba.network.paging.PlayerPagingSource
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class PlayerActivityViewModel : ViewModel() {
@@ -23,17 +17,15 @@ class PlayerActivityViewModel : ViewModel() {
     var player: MutableLiveData<Player> = MutableLiveData<Player>()
     var team: MutableLiveData<Team> = MutableLiveData<Team>()
     val allFavouritePlayersData = MutableLiveData<List<Player>>()
-    lateinit var flowGames: Flow<PagingData<Game>>
-    val flowSet: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
     var playerImage = MutableLiveData<Any>()
+    var seasonAverages: MutableLiveData<HashMap<Int, Average>> = MutableLiveData<HashMap<Int, Average>>()
+    private val lastSeasonAvg = 2021
+    private val numberOfSeasons = 4
 
     init {
         allFavouritePlayersData.value = listOf()
+        seasonAverages.value = hashMapOf()
     }
-
-    val flowPlayers = Pager(PagingConfig(pageSize = 20)) {
-        PlayerPagingSource(Network().getService())
-    }.flow.cachedIn(viewModelScope)
 
     fun insertFavouritePlayer(context: Context, player: Player) {
         viewModelScope.launch {
@@ -61,7 +53,6 @@ class PlayerActivityViewModel : ViewModel() {
     fun getPlayerImages(playerId: Int) {
         viewModelScope.launch {
             val response = Network().getServiceSofa().getAllPlayerImages(playerId)
-            println(response)
             if (response.isSuccessful) {
                 playerImage.value = response.body()?.data?.get(0)
             } else {
@@ -70,10 +61,21 @@ class PlayerActivityViewModel : ViewModel() {
         }
     }
 
-    fun getFlowGamesFromPlayer(team: Team) {
-        flowGames = Pager(PagingConfig(pageSize = 20)) {
-            GameByTeamPagingSource(Network().getService(), team)
-        }.flow.cachedIn(viewModelScope)
-        flowSet.value = true
+    fun getSeasonAverages(playerId: Int) {
+        viewModelScope.launch {
+            for (i in 0 until numberOfSeasons) {
+                val response =
+                    Network().getService().getAllSeasonAverages(lastSeasonAvg - i, playerId)
+                if (response.isSuccessful && response.body() is SeasonAverage) {
+                    val seasonAverage = response.body() as SeasonAverage
+
+                    if (seasonAverage.data.isNotEmpty()) {
+                        val average = seasonAverage.data[0]
+                        seasonAverages.value?.set(average.season, average)
+                        seasonAverages.postValue(seasonAverages.value)
+                    }
+                }
+            }
+        }
     }
 }

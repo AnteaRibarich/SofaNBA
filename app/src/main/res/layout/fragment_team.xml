@@ -26,7 +26,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/background_curved_16dp_radius"
-        android:backgroundTint="@color/status_success"
         android:src="@drawable/ic_action_name"
         app:layout_constraintStart_toStartOf="@id/view_background"
         app:layout_constraintTop_toTopOf="@id/view_background" />
@@ -35,11 +34,11 @@
         android:id="@+id/image_team"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:src="@drawable/assets_exportable_logos_club_logos_eastern_conference_charlotte_hornets_transparent"
         app:layout_constraintBottom_toBottomOf="@id/view_background_team"
         app:layout_constraintEnd_toEndOf="@id/view_background_team"
         app:layout_constraintStart_toStartOf="@id/view_background_team"
-        app:layout_constraintTop_toTopOf="@id/view_background_team" />
+        app:layout_constraintTop_toTopOf="@id/view_background_team"
+        android:contentDescription="@string/sofascore_academy"/>
 
     <TextView
         android:id="@+id/text_team_abbreviation"
@@ -49,8 +48,7 @@
         app:layout_constraintTop_toTopOf="@id/view_background"
         android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
-        style="@style/DescriptionNLv2Left"
-        android:text="BOS"/>
+        style="@style/DescriptionNLv2Left" />
 
     <TextView
         android:id="@+id/text_team_name"
@@ -59,8 +57,7 @@
         app:layout_constraintStart_toEndOf="@id/view_background_team"
         app:layout_constraintTop_toBottomOf="@id/text_team_abbreviation"
         android:layout_marginStart="16dp"
-        style="@style/HeadlineMediumNLv1Left"
-        android:text="Boston Celtics"/>
+        style="@style/HeadlineMediumNLv1Left"  />
 
     <ImageView
         android:id="@+id/image_pin"
@@ -70,7 +67,8 @@
         app:tint="?attr/colorNLv1"
         app:layout_constraintStart_toEndOf="@id/view_background_team"
         app:layout_constraintTop_toBottomOf="@id/text_team_name"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/sofascore_academy"/>
 
     <TextView
         android:id="@+id/text_city"
@@ -80,7 +78,6 @@
         app:layout_constraintTop_toBottomOf="@id/text_team_name"
         android:layout_marginStart="4dp"
         style="@style/AssistiveNLv1Left"
-        android:text="Boston"
         android:textAllCaps="true" />
 
     <TextView
@@ -89,7 +86,6 @@
         android:layout_height="20dp"
         app:layout_constraintTop_toBottomOf="@id/view_background_team"
         app:layout_constraintEnd_toStartOf="@id/vertical_line"
-        android:text="eastern"
         android:gravity="center"
         android:layout_marginTop="21dp"
         android:layout_marginEnd="16dp"
@@ -127,7 +123,6 @@
         android:layout_height="20dp"
         app:layout_constraintTop_toBottomOf="@id/view_background_team"
         app:layout_constraintStart_toEndOf="@id/vertical_line"
-        android:text="atlantic"
         android:gravity="center"
         android:layout_marginTop="21dp"
         android:layout_marginStart="16dp"
@@ -154,7 +149,7 @@
         android:layout_height="48dp"
         app:layout_constraintTop_toBottomOf="@id/view_background"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Other teams in the division"
+        android:text="@string/other_teams_in_the_division"
         android:gravity="center_vertical"
         android:layout_marginStart="16dp"
         style="@style/HeadlineSmallNLv1Left"/>

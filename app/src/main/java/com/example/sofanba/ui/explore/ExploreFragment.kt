@@ -121,10 +121,7 @@ class ExploreFragment : Fragment() {
 
         viewModel.playerImages.observe(viewLifecycleOwner) {
             if (pagingAdapter?.isPlayer == true) {
-                println("HAAAAAAAAAAAAAAAAAAAA")
                 viewModel.playerImages.value?.let { it1 -> pagingAdapter.setImages(it1) }
-            } else {
-                println("HAA")
             }
         }
 

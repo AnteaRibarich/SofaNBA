@@ -24,7 +24,8 @@
         app:layout_constraintStart_toStartOf="parent"
         android:background="@drawable/background_curved_8dp_radius"
         android:clipToOutline="true"
-        android:src="@drawable/ic_action_name"/>
+        android:src="@drawable/ic_action_name"
+        android:contentDescription="@string/sofascore_academy"/>
 
     <ImageView
         android:id="@+id/image_team"
@@ -33,7 +34,8 @@
         app:layout_constraintTop_toTopOf="@id/image_player"
         app:layout_constraintStart_toStartOf="@id/image_player"
         app:layout_constraintBottom_toBottomOf="@id/image_player"
-        app:layout_constraintEnd_toEndOf="@id/image_player" />
+        app:layout_constraintEnd_toEndOf="@id/image_player"
+        android:contentDescription="@string/sofascore_academy" />
 
     <TextView
         android:id="@+id/text_player_name"
@@ -87,5 +89,5 @@
         android:clickable="true"
         android:focusable="true"
         android:background="?android:attr/actionBarItemBackground"
-        />
+        android:contentDescription="@string/sofascore_academy" />
 </FrameLayout>

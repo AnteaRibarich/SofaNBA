@@ -109,7 +109,6 @@ class PlayerPagingAdapter(
                             )
                         )
                     } else {
-                        println(images[player.id])
                         val image = images[player.id] as List<Image>
                         playerHolder.binding.imagePlayer.load(image[0].imageUrl)
                     }

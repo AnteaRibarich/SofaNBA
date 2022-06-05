@@ -2,6 +2,7 @@ package com.example.sofanba.network
 
 import com.example.sofanba.model.GameResponse
 import com.example.sofanba.model.PlayerResponse
+import com.example.sofanba.model.SeasonAverage
 import com.example.sofanba.model.TeamResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -33,4 +34,10 @@ interface BallDontLieService {
         @Query("per_page") per_page: Int,
         @Query("team_ids[]") id: Int
     ): Response<GameResponse>
+
+    @GET("season_averages")
+    suspend fun getAllSeasonAverages(
+        @Query("season") season: Int,
+        @Query("player_ids[]") playerId: Int
+    ): Response<SeasonAverage>
 }

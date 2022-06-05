@@ -44,4 +44,7 @@
     <string name="forward">Forward</string>
     <string name="guard">Guard</string>
     <string name="center">Center</string>
+    <string name="seasons">Seasons</string>
+    <string name="other_teams_in_the_division">Other teams in the division</string>
+    <string name="minus">-</string>
 </resources>

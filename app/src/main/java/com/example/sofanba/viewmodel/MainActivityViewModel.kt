@@ -25,7 +25,7 @@ class MainActivityViewModel : ViewModel() {
     init {
         allFavouritePlayersData.value = listOf()
         allFavouriteTeamsData.value = listOf()
-        playerImages.value = hashMapOf<Int, Any>()
+        playerImages.value = hashMapOf()
     }
 
     fun getAllFavouritePlayers(context: Context) {
@@ -92,7 +92,6 @@ class MainActivityViewModel : ViewModel() {
         viewModelScope.launch {
             val response = Network().getServiceSofa().getAllPlayerImages(playerId)
             if (response.isSuccessful) {
-                println(response)
                 response.body()?.let { playerImages.value?.set(playerId, it.data) }
             } else {
                 playerImages.value?.set(playerId, playerId)
